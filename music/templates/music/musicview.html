@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Music View</title>
+    {% load staticfiles%}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar-dark">
+    <div class="container-fluid">
+        <div class="navbar-expand-md">
+            <a class="navbar-brand" href="{% url 'homepage' %}">Spotify</a>
+            <a class="navbar-right" href="{% url 'album-create' %}">Add album</a>
+            <a class="navbar-right" href="{% url 'UserForm' %}">Register User</a>
+        </div>
+    </div>
+</nav>
+<br>
+<div class="container" align="center">
+{% if object_list %}
+    <h1><a style="color: springgreen" href="{% url 'homepage' %}">Spotify</a> <img width="50" height="50" src="{% static 'music/images/icon.png'%}"></h1>
+<br>
+    {% for x in object_list %}
+
+    <ul>
+        <a href="{% url 'detail' x.id %}" style="color: darkorange">{{ x.title }}</a>
+    </ul>
+{%endfor %}
+</div>
+{% else %}
+<h3>No Albums</h3>
+{% endif %}
+</body>
+</html>

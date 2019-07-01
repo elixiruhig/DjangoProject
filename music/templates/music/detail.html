@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail</title>
+    {% load staticfiles%}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<nav class="navbar-dark">
+    <div class="container-fluid">
+        <div class="navbar-expand-md">
+            <a class="navbar-brand" href="{% url 'homepage' %}">Spotify</a>
+            <a class="navbar-right" href="{% url 'song-create' %}">Add Song</a>
+        </div>
+    </div>
+</nav>
+<br>
+<div class="container" align="center">
+
+    <h1>{{ album.title }}</h1>
+    <h3>Artist : {{ album.artist }}</h3>
+    <h3>Genre : {{ album.genre }}</h3>
+    <img src="{{ album.logo }}" width="400" height="400"><br>
+    <h3> Songs : </h3>
+
+    {% if error_message %}
+
+        <p><strong>{{ error_message }}</strong></p>
+
+    {% endif %}
+
+
+        {% for song in album.song_set.all %}
+            <input type="checkbox" id = "song{{ forloop.counter }}" name="song" value = {{ song.id }}>
+            <label for="{{ forloop.counter }}">
+                {{ song.song_title }}
+                {% if song.is_favourite %}
+                    <img src="http://i.imgur.com/b9b13Rd.png">
+                {% endif %}
+            </label>
+            <br>
+        {% endfor %}
+        <input type="submit" class="bk-bs-btn-warning" value="Favourite">
+
+</div>
+</body>
+</html>

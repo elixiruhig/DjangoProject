@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>
+		Blogs
+
+	</title>
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+	<style>
+
+.column {
+  float: left;
+  width: 60%;
+	margin-left:20%;
+  margin-bottom: 16px;
+  padding: 0 8px;
+
+}
+
+@media screen and (max-width: 650px) {
+  .column {
+    width: 100%;
+
+    display: block;
+  }
+}
+
+.card {
+height: 560px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+
+}
+
+.container {
+  padding: 0 16px;
+
+}
+
+.container::after, .row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.title {
+  color: grey;
+}
+
+.button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+}
+
+.para{
+ word-wrap:break-word;
+}
+
+.button:hover {
+  background-color: #555;
+}
+
+p {
+   width: 40%;
+   margin: 2px;
+
+}
+
+.hyphens {
+width: 100%;
+   hyphens: auto;
+}
+
+
+
+</style>
+
+
+</head>
+
+{% extends 'blogs/base.html' %}
+{% block body_block %}
+{% if user.is_authenticated %}
+<p>
+      		<h1>My Blog</h1>
+      		<br /> <br />
+     		 <h2>Latest posts
+
+             </h2>
+     		 <hr/>
+
+
+</p>
+
+{% for post in posts %}
+
+    <div class="column "  >
+    <div class="card" >
+      <img src="{{ post.image }}" alt="blog-image" height=400 width=400 style="width:100% ">
+      <div class="container">
+		  <h2><a href="/blogs/{{ post.slug }}/">{{ post.title }}</a></h2>
+        <span class="title">{{ post.date }}</span>
+
+		  <p class="hyphens">{{post.body | truncatechars:90}}<a href="/blogs/{{ post.slug }}/">Read more</a></p>
+          <p>Category : {{ post.category }}</p>
+          <p><a href="{% url 'blogs:post-delete' post.id %}" onclick="return confirm('Are you sure you want to delete this?')">Delete Post</a></p>
+
+      </div>
+    </div>
+
+  </div>
+
+{% endfor%}
+    {% endif %}
+{% endblock %}
+</html>

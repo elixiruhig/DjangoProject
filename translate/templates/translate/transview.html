@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Translate</title>
+</head>
+<body>
+<div class="container" align="center">
+    <h1>Translate</h1>
+    <br>
+    <form action="" method="post">
+    {% csrf_token %}
+    <input type="text" name = "source">
+    <br>
+    <input type="submit" name="translate" value="Translate">
+    <br>
+    </form>
+    <br>
+    <h1>Translated text: </h1>
+    <br>
+    <h1>{{ answer }}</h1>
+</div>
+</body>
+</html>

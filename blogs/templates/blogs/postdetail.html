@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ post.title }}</title>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-sticky-top">
+      <div class="container">
+        <ul class="nav navbar-nav">
+
+{# Django Home Link / Admin Link / Register Link#}
+
+          {# Some logic on what to display for last item#}
+          {% if post %}
+            <li><a href="{% url 'blogs:post-update' post.id %}">Update Post</a></li>
+
+            {% endif %}
+        </ul>
+      </div>
+</nav>
+<h1 align="center">{{ post.title }}</h1>
+<br>
+<img src="{{ post.image }}" alt="blog-image" height=400 width=400 style="width:100% ">
+<br>
+Category : {{ post.category }}
+<br>
+Date : {{ post.date }}
+<br>
+<p>{{ post.body }}</p>
+</body>
+</html>

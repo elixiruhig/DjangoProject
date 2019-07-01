@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Task</title>
+</head>
+<body>
+<h1 align="center">Update</h1>
+<div class="container-fluid" align="center">
+<form action="" method="post">
+    {% csrf_token %}
+
+        <input type="text" style="width: 50%" name="name" placeholder="{{ obj.name }}">
+    <br><br>
+    <textarea name="content" style="width: 50%" rows="5" cols="100" placeholder="{{ obj.content }}"></textarea>
+    <br><br>
+    Created date: <input type = "date" name = "created" placeholder="{{ obj.created }}">
+    <br><br>
+    Due date: <input type="date" name="duedate" placeholder="{{ obj.duedate }}">
+    <br><br>
+    <select name = "category_select">
+        <option class="disabled" value="">Choose a category</option>
+        {% for category in categories %}
+            <option value="{{ category.name }}">{{ category.name }}</option>
+        {% endfor %}
+    </select>
+<br><br>
+    <input type="submit" name="Update" value="Update">
+</form>
+</div>
+</body>
+</html>

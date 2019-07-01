@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quote View</title>
+{#    {% load staticfiles%}#}
+{#    <link rel="stylesheet" type="text/css" href="{% static 'music/style.css' %}">#}
+</head>
+<body style="background-color: #0d161f">
+<h3 style="color: #999999" align="center">Today's Quote:</h3>
+<br>
+<br>
+<h1 style="color: #999999" align="center">{{ quote }}</h1>
+<br>
+<br>
+<div align="center">
+<form  action="" method="post">
+    {% csrf_token %}
+    <input type="text" style="display: block" name="searchbar">
+    <br>
+    <input type="submit" name="Search" value="Search">
+</form>
+</div>
+<br><br>
+<h1 style="color: #999999" align="center">Search results:</h1>
+<br>
+<ul>
+{% for str in quotes %}
+    <li style="color: #999999">{{ str }}</li>
+{% endfor %}
+</ul>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register User</title>
+</head>
+<body>
+
+<h1>Register User</h1>
+<div class="container-fluid" align="center">
+
+<form method="post" action="">
+    {% csrf_token %}
+    {{ user_form.as_p }}
+    {{ profile_form.as_p }}
+    <input type="submit" name="submit" value="Register">
+</form>
+</div>
+</body>
+</html>

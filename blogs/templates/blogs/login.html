@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+<h1 align="center">Login</h1>
+<div class="container-fluid" align="center">
+    <form method="post" action="{% url 'blogs:login' %}">
+        {% csrf_token %}
+    <ul type="None">
+    <li>Username: <input type="text" name="uname"></li>
+
+    <li>Password : <input type="password" name="pass"></li>
+        <li><input type="submit" name="login" value="Login"></li>
+    </ul>
+        </form>
+</div>
+
+</body>
+</html>

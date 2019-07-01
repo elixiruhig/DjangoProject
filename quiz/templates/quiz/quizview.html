@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quizview</title>
+
+</head>
+<body>
+<h1 align="center">Quiz</h1>
+{% if not score %}
+<form action="" method="post">
+{% csrf_token %}
+{% for object in objects %}
+    <div align="center">
+        <br>
+        <h3>{{ object.que }}</h3>
+        <br>
+
+            <div class="well"><input type = radio name="{{ object.que }}" value="a">{{ object.option1 }}</div>
+            <br>
+            <div class="well"><input type = radio name="{{ object.que }}" value="b">{{ object.option2 }}</div>
+            <br>
+            <div class="well"><input type = radio name="{{ object.que }}" value="c">{{ object.option3 }}</div>
+            <br>
+            <div class="well"><input type = radio name="{{ object.que }}" value="d">{{ object.option4 }}</div>
+
+    <br>
+    </div>
+{% endfor %}
+<br>
+<input type="submit" name="submit" value="Submit">
+</form>
+
+{% else %}
+<h1 align="center">SCORE : {{ score }}</h1>
+{% endif %}
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User view</title>
+</head>
+<body>
+<form action="" method="post">
+    {% csrf_token %}
+<button name="btn-friend" value="Add Friend">Add Friend</button>
+</form>
+{% for tweet in array %}
+
+            <div class="column "  >
+    <div class="card" >
+      <div class="container">
+        <span class="title">{{ tweet.date }}</span>
+		  <p class="hyphens">{{tweet.tweet}}</p>
+          {% if tweet.image %}
+          <br>
+          <img src="{{ tweet.image.url }}" alt = "{{ tweet.image.name }}"width="400" height="400">
+          {% endif %}
+      </div>
+    </div>
+
+        {% endfor %}
+
+</body>
+</html>

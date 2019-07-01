@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Twitter</title>
+</head>
+<body>
+{% extends 'tweet/base.html' %}
+{% block body_block %}
+    {% if user.is_authenticated %}
+
+        <h3>Authenticated {{ username }}</h3>
+            <div class="container-fluid" align="center" id="tweetclass">
+                <form action="." method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <br>
+                    <input class="btn btn-info" type="submit" name="submit" value="Tweet">
+                </form>
+            </div>
+            <br><br>
+        {% for tweet in tweets %}
+
+            <div class="column "  >
+    <div class="card" >
+      <div class="container">
+        <span class="title">{{ tweet.date }} {{ tweet.user }}</span>
+		  <p class="hyphens">{{tweet.tweet}}</p>
+          {% if tweet.image %}
+          <br>
+          <img src="{{ tweet.image.url }}" alt = "{{ tweet.image.name }}"width="400" height="400">
+              {% endif %}
+      <form action="" method="post">
+          {% csrf_token %}
+          <button class="btn btn-default" name="retweet" value="{{ tweet.id }}">Retweet</button>
+      </form>
+      </div>
+    </div>
+
+        {% endfor %}
+        <h1>Tags:</h1>
+        <br>
+        <ul type="None">
+        {% for tag in tags %}
+            <li><a href="{% url 'tweet:tagview' tag %}">{{ tag }}</a></li>
+        {% endfor %}
+        </ul>
+        <h3>Other Users</h3>
+         <ul>
+        {% for user in users %}
+
+
+            <li><a href="{% url 'tweet:userview' user.username %}">{{ user }}</a></li>
+
+        {% endfor %}
+         </ul>
+        <h3>Retweets</h3>
+        <ul>
+        {% for rt in retweets %}
+
+            <div class="column "  >
+    <div class="card" >
+      <div class="container">
+        <span class="title">{{ rt.date }} {{ rt.owner }}</span>
+		  <p class="hyphens">{{rt.tweet}}</p>
+          {% if rt.image %}
+          <br>
+          <img src="{{ rt.image.url }}" alt = "{{ rt.image.name }}"width="400" height="400">
+              {% endif %}
+      </div>
+    </div>
+
+        {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}
+</body>
+</html>

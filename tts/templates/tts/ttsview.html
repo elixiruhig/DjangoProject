@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Text to Speech</title>
+</head>
+<body>
+<div class="container" align="center">
+    <h3>Enter text:</h3>
+    <br>
+    <form action="" method="post">
+        {% csrf_token %}
+        <input type="text" name="txtinput">
+        <br>
+        <br>
+        <input type="submit" name="submit" value="Speak">
+    </form>
+</div>
+</body>
+</html>
