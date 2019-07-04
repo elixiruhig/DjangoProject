@@ -25,7 +25,9 @@ SECRET_KEY = '1_l3=8+$#v8)o(-)u@x**wbvi6ag49gfzx92tqeq)4o(&7b_$v'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '*'
+]
 
 
 # Application definition
@@ -50,6 +52,7 @@ INSTALLED_APPS = [
     'quiz',
     'tweet',
     'taggit',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

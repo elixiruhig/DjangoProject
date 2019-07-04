@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from blogs import views
 
 app_name = 'blogs'
@@ -29,5 +29,6 @@ urlpatterns = [
     url(r'^(?P<slug>[-\w]+)/$',views.postdetail,name = 'postdetail'),
     url(r'^post/add$',views.PostCreate.as_view(),name = 'post-create'),
     url(r'^post/(?P<pk>[0-9]+)$',views.PostUpdate.as_view(),name = 'post-update'),
-    url(r'^post/(?P<pk>[0-9]+)/delete$',views.PostDelete.as_view(),name = 'post-delete')
+    url(r'^post/(?P<pk>[0-9]+)/delete$',views.PostDelete.as_view(),name = 'post-delete'),
+    path('api/posts/',include('blogs.api.urls'))
 ]
