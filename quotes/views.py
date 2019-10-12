@@ -4,7 +4,7 @@ from django.shortcuts import render
 
 # Create your views here.
 def quoteview(request):
-    rint = random.randint(2834,4497)
+    rint = random.randint(0,1663)
     quote = Quote.objects.get(id = rint)
     quotes = []
     if request.method == 'POST' and 'Search' in request.POST:
